@@ -20,14 +20,40 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         SetupView();
+        setupListener();
+
+
+
+
+    }
+    private boolean validate(){
+
+        if (text1.getText().toString().equals("") || text1.getText() == null){
+            return false;
+        }else if (text2.getText().toString().equals("") || text2.getText() == null) {
+            return false;
+        }
+        return true;
+    }
+
+    private String value(int value1, int value2){
+        int value = value1 + value2;
+        return String.valueOf(value);
+    }
+    private void setupListener(){
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                ShowMessage("adasdasd");
+            public void onClick(View v) {
+            if (validate()) {
+                    int value1 = Integer.parseInt(text1.getText().toString());
+                    int value2 = Integer.parseInt(text2.getText().toString());
+
+                    texthasil.setText(
+                            value(value1, value2)
+                    );
+                }else ShowMessage("Masukkan Data dengan Benar");
             }
         });
-
-
     }
     private void SetupView(){
         text1 = findViewById(R.id.val1);
